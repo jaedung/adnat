@@ -10,6 +10,7 @@ gem 'sassc'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
+gem 'pry-rails'
 
 group :development, :test do
   gem 'byebug'
