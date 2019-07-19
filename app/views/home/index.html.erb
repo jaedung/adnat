@@ -87,6 +87,7 @@
       </div>
     </div>
     <% end %>
+    <% if user_signed_in? == true and current_user.organisation_id != nil %>
     <div class="col-8">
       <div class="card">
         <div class="card-body">
@@ -99,5 +100,6 @@
         </div>
       </div>
     </div>
+    <% end %>
   </div>
 </div>
