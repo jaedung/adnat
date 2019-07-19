@@ -1,78 +1,103 @@
 <div class="container">
   <div class="row">
     <% if user_signed_in? == false %>
-    <div class="col-6 mt-4">
+    <div class="col-6">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Welcome to Adnat!</h5>
           <p class="card-text">This is a simplified version of the Tanda web app from scratch using Ruby on Rails.</p>
-          <small class="text-muted">Developed by Justin Kim</small>
+          <hr>
+          <a href="/users/sign_in" class="btn btn-primary btn-sm m-0">Log in</a>
+          <a href="/users/sign_up" class="btn btn-outline-primary btn-sm m-0">Sign up</a>
+          <small class="d-block text-muted text-right">Developed by Justin Kim</small>
         </div>
       </div>
     </div>
     <% end %>
     <% if user_signed_in? == true %>
-    <div class="col-12 mt-4">
+    <div class="col-8">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Hi Justin!</h5>
           <p class="card-text m-0">You are not a member of any organisations.</p>
           <p class="card-text m-0">Join an existing one or create a new one.</p>
           <hr>
-          <div class="row">
-            <div class="col-8">
-              <h5 class="card-header pl-0">Organisations</h5>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th width="1px">#</th>
-                    <th>Name</th>
-                    <th width="1px"></th>
-                    <th width="1px"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>1</th>
-                    <td>Domino's Pizza</td>
-                    <td>
-                      <a href="#" class="btn btn-raised btn-success btn-sm m-0">Edit</a>
-                    </td>
-                    <td class="pl-0">
-                      <a href="#" class="btn btn-raised btn-info btn-sm m-0">Join</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>Boast Juice</td>
-                    <td>
-                      <a href="#" class="btn btn-raised btn-success btn-sm m-0">Edit</a>
-                    </td>
-                    <td class="pl-0">
-                      <a href="#" class="btn btn-raised btn-info btn-sm m-0">Join</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <h5 class="card-title">Organisations</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="1px">#</th>
+                <th>Name</th>
+                <th>Hourly rate</th>
+                <th width="1px"></th>
+                <th width="1px"></th>
+                <th width="1px"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Domino's Pizza</td>
+                <td>$25</td>
+                <td class="pr-0">
+                  <a href="#" class="btn btn-primary btn-sm m-0">Join</a>
+                </td>
+                <td class="pr-0">
+                  <a href="/organisations/1/edit" class="btn btn-success btn-sm m-0">Edit</a>
+                </td>
+                <td>
+                  <a href="/organisations/1/edit" class="btn btn-danger btn-sm m-0">Delete</a>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Boast Juice</td>
+                <td>$22</td>
+                <td class="pr-0">
+                  <a href="#" class="btn btn-primary btn-sm m-0">Join</a>
+                </td>
+                <td class="pr-0">
+                  <a href="/organisations/2/edit" class="btn btn-success btn-sm m-0">Edit</a>
+                </td>
+                <td>
+                  <a href="/organisations/1/edit" class="btn btn-danger btn-sm m-0">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-0">Create organisation</h5>
+          <form>
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">Name</label>
+              <input type="text" class="form-control">
             </div>
-            <div class="col-4">
-              <h5 class="card-header pl-0">Create organisation</h5>
-              <form>
-                <div class="form-group">
-                  <label for="name" class="bmd-label-floating">Name</label>
-                  <input type="text" class="form-control" id="name">
-                </div>
-                <div class="form-group bmd-form-group">
-                  <label for="rate" class="bmd-label-floating">Hourly rate</label>
-                  <input type="text" class="form-control" id="rate">
-                </div>
-                <button type="submit" class="btn btn-raised btn-success btn-sm m-0">Create</a>
-              </form>
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">Hourly rate</label>
+              <input type="text" class="form-control">
             </div>
-          </div>
+            <button type="submit" class="btn btn-success btn-sm m-0">Create</button>
+          </form>
         </div>
       </div>
     </div>
     <% end %>
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Boost Juice</h5>
+          <h6 class="card-subtitle mb-2 text-muted" style="text-transform: none;">Hourly rate - $22</h6>
+          <hr>
+          <a href="/organisations/1/shifts" class="btn btn-primary btn-sm">View shifts</a>
+          <a href="/organisations/1/edit" class="btn btn-success btn-sm">Edit</a>
+          <a href="/organisations/1" class="btn btn-danger btn-sm">Leave</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

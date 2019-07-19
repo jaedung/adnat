@@ -4,10 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   # organisations
-  get "/organisations/:id", to: "organisations#show"
+  get "/organisations/:id/shifts", to: "organisations#shifts"
   get "/organisations/:id/edit", to: "organisations#edit"
   post "/organisations/:id", to: "organisations#update"
-
-  resources :organisations
 
 end

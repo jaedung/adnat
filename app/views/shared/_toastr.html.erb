@@ -1,10 +1,18 @@
 <% if notice %>
   <script type="text/javascript">
-    Toastify({ text: "<%= notice %>" }).showToast();
+    Toastify({ 
+      text: "<%= notice %>",
+      duration: 3000,
+      backgroundColor: "linear-gradient(to right, #66bb6a, #388e3c)"
+    }).showToast();
   </script>
 <% end %>
 <% if alert %>
   <script type="text/javascript">
-    Toastify({ text: "<%= alert %>" }).showToast();
+    Toastify({ 
+      text: "<%= alert %>",
+      duration: 3000,
+      backgroundColor: "linear-gradient(to right, #ef5350, #d32f2f)"
+    }).showToast();
   </script>
 <% end %>
