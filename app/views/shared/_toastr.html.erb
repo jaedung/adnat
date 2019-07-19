@@ -1,0 +1,10 @@
+<% if notice %>
+  <script type="text/javascript">
+    Toastify({ text: "<%= notice %>" }).showToast();
+  </script>
+<% end %>
+<% if alert %>
+  <script type="text/javascript">
+    Toastify({ text: "<%= alert %>" }).showToast();
+  </script>
+<% end %>
