@@ -14,3 +14,7 @@ body {
 .form-control[readonly] {
   background-color: #fff;
 }
+
+.breadcrumb {
+  background-color: #fff;
+}

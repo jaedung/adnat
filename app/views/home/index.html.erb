@@ -2,7 +2,7 @@
   <div class="row">
     <% if user_signed_in? == false %>
     <div class="col-6">
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-body">
           <h5 class="card-title">Welcome to Adnat!</h5>
           <p class="card-text">This is a simplified version of the Tanda web app from scratch using Ruby on Rails.</p>
@@ -16,7 +16,7 @@
     <% end %>
     <% if user_signed_in? == true and current_user.organisation_id == nil %>
     <div class="col-8">
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-body">
           <h5 class="card-title">Hi <%= current_user.name %>!</h5>
           <p class="card-text m-0">You are not a member of any organisations.</p>
@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="col-4">
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-body">
           <h5 class="card-title mb-0">Create organisation</h5>
           <form action="/organisations" method="post">
@@ -88,14 +88,14 @@
     <% end %>
     <% if user_signed_in? == true and current_user.organisation_id != nil %>
     <div class="col-12">
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-body">
           <h5 class="card-title">
             <%= @organisation.name %>
           </h5>
           <h6 class="card-subtitle mb-2 text-muted" style="text-transform: none;">Hourly rate - $<%= @organisation.hourly_rate %></h6>
           <hr>
-          <a href="/organisations/<%= @organisation.id %>/shifts" class="btn btn-primary btn-sm">View shifts</a>
+          <a href="/organisations/<%= @organisation.id %>/shifts" class="btn btn-primary btn-sm">View shifts (<%=@count%>)</a>
           <a href="/organisations/<%= @organisation.id %>/edit" class="btn btn-success btn-sm">Edit</a>
           <a href="/organisations/<%= @organisation.id %>/leave" class="btn btn-danger btn-sm">Leave</a>
         </div>

@@ -14,6 +14,7 @@ class HomeController < ApplicationController
       # detail page.
       if current_user.organisation_id != nil
         @organisation = Organisation.find(current_user.organisation_id)
+        @count = @organisation.shifts.length
       end
     end
   end

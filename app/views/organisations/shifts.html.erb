@@ -1,12 +1,23 @@
 <div class="container">
   <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb mb-0 pl-0">
+          <li class="breadcrumb-item"><a href="/"><%= @response[:name] %></a></li>
+          <li class="breadcrumb-item active" aria-current="page">Shifts</li>
+        </ol>
+      </nav>
+    </div>
     <div class="col-9">
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-body">
-          <h5 class="card-title">
-            <%= @response[:name] %> Shifts</h5>
+          <h5 class="card-title"><%= @response[:name] %> Shifts (<%= @response[:shifts].length %>)</h5>
           <h6 class="card-subtitle mb-3 text-muted" style="text-transform: none;">Hourly rate - $<%= @response[:hourly_rate] %></h6>
           <hr>
+          <% if @response[:shifts].length == 0 %>
+          <p class="text-primary">There are no existing shifts.</p>
+          <% end %>
+          <% if @response[:shifts].length > 0 %>
           <table class="table">
             <thead>
               <tr>
@@ -21,28 +32,43 @@
             </thead>
             <tbody>
               <% @response[:shifts].each do |shift| %>
-               <tr>
-                <td class="pl-0"><%= shift[:name] %></td>
-                <td><%= shift[:date] %></td>
-                <td><%= shift[:start] %></td>
-                <td><%= shift[:finish] %></td>
-                <td><%= shift[:break_length] %></td>
-                <td><%= shift[:hours_worked] %></td>
-                <td>$<%= shift[:cost] %></td>
+              <tr>
+                <td class="pl-0">
+                  <%= shift[:name] %>
+                </td>
+                <td>
+                  <%= shift[:date] %>
+                </td>
+                <td>
+                  <%= shift[:start] %>
+                </td>
+                <td>
+                  <%= shift[:finish] %>
+                </td>
+                <td>
+                  <%= shift[:break_length] %>
+                </td>
+                <td>
+                  <%= shift[:hours_worked] %>
+                </td>
+                <td>$
+                  <%= shift[:cost] %>
+                </td>
               </tr>
               <% end %>
             </tbody>
           </table>
+          <% end %>
         </div>
       </div>
     </div>
     <div class="col-3">
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-body">
           <h5 class="card-title mb-0">Create shift</h5>
           <hr>
           <form action="/organisations/<%= @response[:id] %>/shifts" method="post">
-             <div class="form-group bmd-form-group">
+            <div class="form-group bmd-form-group">
               <label class="bmd-label-static">Shift date</label>
               <input type="text" class="form-control datepicker" name="date" required>
             </div>
