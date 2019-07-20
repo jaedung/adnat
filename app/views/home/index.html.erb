@@ -14,15 +14,19 @@
       </div>
     </div>
     <% end %>
-    <% if user_signed_in? == true %>
+    <% if user_signed_in? == true and current_user.organisation_id == nil %>
     <div class="col-8">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Hi Justin!</h5>
+          <h5 class="card-title">Hi <%= current_user.name %>!</h5>
           <p class="card-text m-0">You are not a member of any organisations.</p>
           <p class="card-text m-0">Join an existing one or create a new one.</p>
           <hr>
           <h5 class="card-title">Organisations</h5>
+          <% if @organisations.length == 0 %>
+          <p class="text-primary">There are no existing organisations.</p>
+          <% end %>
+          <% if @organisations.length > 0 %>
           <table class="table">
             <thead>
               <tr>
@@ -35,36 +39,31 @@
               </tr>
             </thead>
             <tbody>
+              <% @organisations.each do |organisation| %>
               <tr>
-                <td>1</td>
-                <td>Domino's Pizza</td>
-                <td>$25</td>
-                <td class="pr-0">
-                  <a href="#" class="btn btn-primary btn-sm m-0">Join</a>
-                </td>
-                <td class="pr-0">
-                  <a href="/organisations/1/edit" class="btn btn-success btn-sm m-0">Edit</a>
+                <td>
+                  <%= organisation.id %>
                 </td>
                 <td>
-                  <a href="/organisations/1/edit" class="btn btn-danger btn-sm m-0">Delete</a>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Boast Juice</td>
-                <td>$22</td>
-                <td class="pr-0">
-                  <a href="#" class="btn btn-primary btn-sm m-0">Join</a>
-                </td>
-                <td class="pr-0">
-                  <a href="/organisations/2/edit" class="btn btn-success btn-sm m-0">Edit</a>
+                  <%= organisation.name %>
                 </td>
                 <td>
-                  <a href="/organisations/1/edit" class="btn btn-danger btn-sm m-0">Delete</a>
+                  $<%= organisation.hourly_rate %>
+                </td>
+                <td class="pr-0">
+                  <a href="/organisations/<%= organisation.id %>/join" class="btn btn-primary btn-sm m-0">Join</a>
+                </td>
+                <td class="pr-0">
+                  <a href="/organisations/<%= organisation.id %>/edit" class="btn btn-success btn-sm m-0">Edit</a>
+                </td>
+                <td>
+                  <a href="/organisations/<%= organisation.id %>" class="btn btn-danger btn-sm m-0" data-method="delete">Delete</a>
                 </td>
               </tr>
+              <% end %>
             </tbody>
           </table>
+          <% end %>
         </div>
       </div>
     </div>
@@ -72,14 +71,14 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title mb-0">Create organisation</h5>
-          <form>
+          <form action="/organisations" method="post">
             <div class="form-group bmd-form-group">
               <label class="bmd-label-floating">Name</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="name" required>
             </div>
             <div class="form-group bmd-form-group">
               <label class="bmd-label-floating">Hourly rate</label>
-              <input type="text" class="form-control">
+              <input type="number" class="form-control" name="hourly_rate" required>
             </div>
             <button type="submit" class="btn btn-success btn-sm m-0">Create</button>
           </form>
@@ -88,15 +87,17 @@
     </div>
     <% end %>
     <% if user_signed_in? == true and current_user.organisation_id != nil %>
-    <div class="col-8">
+    <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Boost Juice</h5>
-          <h6 class="card-subtitle mb-2 text-muted" style="text-transform: none;">Hourly rate - $22</h6>
+          <h5 class="card-title">
+            <%= @organisation.name %>
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted" style="text-transform: none;">Hourly rate - $<%= @organisation.hourly_rate %></h6>
           <hr>
-          <a href="/organisations/1/shifts" class="btn btn-primary btn-sm">View shifts</a>
-          <a href="/organisations/1/edit" class="btn btn-success btn-sm">Edit</a>
-          <a href="/organisations/1" class="btn btn-danger btn-sm">Leave</a>
+          <a href="/organisations/<%= @organisation.id %>/shifts" class="btn btn-primary btn-sm">View shifts</a>
+          <a href="/organisations/<%= @organisation.id %>/edit" class="btn btn-success btn-sm">Edit</a>
+          <a href="/organisations/<%= @organisation.id %>/leave" class="btn btn-danger btn-sm">Leave</a>
         </div>
       </div>
     </div>

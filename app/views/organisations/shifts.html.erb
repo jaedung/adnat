@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-9">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Boost Juice Shifts</h5>
-          <h6 class="card-subtitle mb-2 text-muted" style="text-transform: none;">Hourly rate - $22</h6>
+          <h5 class="card-title">
+            <%= @response[:name] %> Shifts</h5>
+          <h6 class="card-subtitle mb-3 text-muted" style="text-transform: none;">Hourly rate - $<%= @response[:hourly_rate] %></h6>
           <hr>
           <table class="table">
             <thead>
@@ -19,26 +20,46 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="pl-0">Justin Kim</td>
-                <td>5/02/2019</td>
-                <td>10:15 am</td>
-                <td>1:30 pm</td>
-                <td>0</td>
-                <td>3.25</td>
-                <td>$32.50</td>
-              </tr>
+              <% @response[:shifts].each do |shift| %>
                <tr>
-                <td class="pl-0">Yeunji Cho</td>
-                <td>5/02/2019</td>
-                <td>10:15 am</td>
-                <td>1:30 pm</td>
-                <td>0</td>
-                <td>3.25</td>
-                <td>$32.50</td>
+                <td class="pl-0"><%= shift[:name] %></td>
+                <td><%= shift[:date] %></td>
+                <td><%= shift[:start] %></td>
+                <td><%= shift[:finish] %></td>
+                <td><%= shift[:break_length] %></td>
+                <td><%= shift[:hours_worked] %></td>
+                <td>$<%= shift[:cost] %></td>
               </tr>
+              <% end %>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-0">Create shift</h5>
+          <hr>
+          <form action="/organisations/<%= @response[:id] %>/shifts" method="post">
+             <div class="form-group bmd-form-group">
+              <label class="bmd-label-static">Shift date</label>
+              <input type="text" class="form-control datepicker" name="date" required>
+            </div>
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-static">Start time</label>
+              <input type="text" class="form-control timepicker" name="start" required>
+            </div>
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-static">Finish time</label>
+              <input type="text" class="form-control timepicker" name="finish" required>
+            </div>
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-static">Break length (minutes)</label>
+              <input type="number" class="form-control" name="break_length" required>
+            </div>
+            <button type="submit" class="btn btn-success btn-sm m-0">Create</button>
+          </form>
         </div>
       </div>
     </div>
