@@ -93,9 +93,10 @@
           <h5 class="card-title">
             <%= @organisation.name %>
           </h5>
+          <h6 class="card-subtitle mb-2 text-muted" style="text-transform: none;"><%= @users %> member(s) working in this organisation</h6>
           <h6 class="card-subtitle mb-2 text-muted" style="text-transform: none;">Hourly rate - $<%= @organisation.hourly_rate %></h6>
           <hr>
-          <a href="/organisations/<%= @organisation.id %>/shifts" class="btn btn-primary btn-sm">View shifts (<%=@count%>)</a>
+          <a href="/organisations/<%= @organisation.id %>/shifts" class="btn btn-primary btn-sm">View shifts (<%=@shifts%>)</a>
           <a href="/organisations/<%= @organisation.id %>/edit" class="btn btn-success btn-sm">Edit</a>
           <a href="/organisations/<%= @organisation.id %>/leave" class="btn btn-danger btn-sm">Leave</a>
         </div>

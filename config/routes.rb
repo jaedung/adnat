@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   post "/organisations/:id", to: "organisations#update"
   delete "/organisations/:id", to: "organisations#destroy"
 
-  get "/organisations/:id/shifts", to: "organisations#shifts"
-  post "/organisations/:id/shifts", to: "organisations#create_shift"
+  # shifts
+  get "/organisations/:id/shifts", to: "shifts#index"
+  get "/organisations/:id/shifts/new", to: "shifts#new"
+  get "/organisations/:organisation_id/shifts/:id/edit", to: "shifts#edit"
+  post "/organisations/:id/shifts", to: "shifts#create"
+  post "/organisations/:organisation_id/shifts/:id", to: "shifts#update"
+  delete "/organisations/:organisation_id/shifts/:id", to: "shifts#destroy"
 
 end
