@@ -1,24 +1,14 @@
-# README
+This is a simplified version of the Tanda web app from scratch using Ruby on Rails developed by the applicant `Justin Kim`.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Ruby version: `2.6.3`
+- Rails version: `5.2.3`
 
-Things you may want to cover:
+The steps you need to follow to run the application:
 
-* Ruby version
+1. clone this repository
+2. run `bundle install`
+3. run `rails db:migrate`
+4. run `rails s` command
+5. This application will be running on `localhost:3000`.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Enjoy this application!
