@@ -1,3 +1,20 @@
 body {
   background-color: #fff;
 }
+
+.table thead tr th {
+  font-size: 0.875rem;
+}
+
+/*.mdtp__wrapper {
+  bottom: 0px;
+  top: 15%;
+}*/
+
+.form-control[readonly] {
+  background-color: #fff;
+}
+
+.breadcrumb {
+  background-color: #fff;
+}

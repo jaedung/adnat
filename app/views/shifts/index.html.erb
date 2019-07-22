@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb mb-0 pl-0">
+          <li class="breadcrumb-item">
+            <a href="/"><%= @response[:name] %></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Shifts</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col-12">
+      <div class="card mt-2">
+        <div class="card-body">
+          <div class="d-flex">
+            <h4><%= @response[:name] %> Shifts (<%= @response[:shifts].length %>)</h4>
+            <a href="/organisations/<%= @response[:id] %>/shifts/new" class="btn btn-success ml-auto">Create shift</a>
+          </div>
+          <h6 class="card-subtitle mb-3 text-muted" style="text-transform: none;">Hourly rate - $<%= @response[:hourly_rate] %>
+          </h6>
+          <hr>
+          <% if @response[:shifts].length == 0 %>
+          <p class="text-primary">There are no existing shifts.</p>
+          <% end %>
+          <% if @response[:shifts].length > 0 %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="pl-0">Name</th>
+                <th>Shift date</th>
+                <th>Start time</th>
+                <th>Finish time</th>
+                <th>Break length (minutes)</th>
+                <th>Hours worked</th>
+                <th>Shift cost</th>
+                <th width="1px"></th>
+                <th width="1px"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @response[:shifts].each do |shift| %>
+              <tr>
+                <td class="pl-0">
+                  <%= shift[:name] %>
+                </td>
+                <td>
+                  <%= shift[:date] %>
+                </td>
+                <td>
+                  <%= shift[:start] %>
+                </td>
+                <td>
+                  <%= shift[:finish] %>
+                </td>
+                <td>
+                  <%= shift[:break_length] %>
+                </td>
+                <td>
+                  <%= shift[:hours_worked] %>
+                </td>
+                <td>$<%= shift[:cost] %></td>
+                <td class="pr-0"><a href="/organisations/<%= shift[:organisation_id] %>/shifts/<%= shift[:id] %>/edit" class="btn btn-success btn-sm m-0">Edit</a></td>
+                <td><a href="/organisations/<%= shift[:organisation_id] %>/shifts/<%= shift[:id] %>" class="btn btn-danger btn-sm m-0" data-method="delete">Delete</a></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

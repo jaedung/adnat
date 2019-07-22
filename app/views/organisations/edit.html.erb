@@ -1,19 +1,27 @@
 <div class="container">
   <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb" role="navigation">
+        <ol class="breadcrumb mb-0 pl-0">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Edit organisation</li>
+        </ol>
+      </nav>
+    </div>
     <div class="col-5">
-      <div class="card">
+      <div class="card mt-2">
         <div class="card-body">
           <h5 class="card-title mb-0">Edit organisation</h5>
-          <form>
+          <form action="/organisations/<%= @organisation.id %>" method="post">
             <div class="form-group bmd-form-group">
               <label class="bmd-label-floating">Name</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="name" value="<%= @organisation.name %>" required>
             </div>
             <div class="form-group bmd-form-group">
               <label class="bmd-label-floating">Hourly rate</label>
-              <input type="text" class="form-control">
+              <input type="number" class="form-control" name="hourly_rate" value="<%= @organisation.hourly_rate %>" required>
             </div>
-            <button type="submit" class="btn btn-success m-0">Update</button>
+            <button type="submit" class="btn btn-success btn-sm m-0">Update</button>
           </form>
         </div>
       </div>

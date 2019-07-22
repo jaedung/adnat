@@ -1,6 +1,7 @@
 class Shift < ApplicationRecord
 
   belongs_to :user
+  belongs_to :organisation
 
   validates :start, presence: { message: "Start date is required." }
   validates :finish, presence: { message: "Finish date is required." }
